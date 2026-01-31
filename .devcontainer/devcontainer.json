@@ -1,0 +1,20 @@
+{
+  "name": "Pygame Dashboard Dev",
+  "features": {
+    "ghcr.io/devcontainers/features/desktop-lite:1": {}
+  },
+  "containerEnv": {
+    "DISPLAY": ":1",
+    "SDL_AUDIODRIVER": "dummy"
+  },
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y prometheus-node-exporter fonts-dejavu libsdl2-dev && pip install pygame requests && sudo sed -i 's/ARGS=\"\"/ARGS=\"--web.listen-address=\":9100\"\"/' /etc/default/prometheus-node-exporter && sudo service prometheus-node-exporter restart",
+  "customizations": {
+    "codespaces": {
+      "openPorts": [9100, 6080],
+      "settings": {
+        "terminal.integrated.fontFamily": "'DejaVu Sans Mono'",
+        "terminal.integrated.letterSpacing": 0
+      }
+    }
+  }
+}
